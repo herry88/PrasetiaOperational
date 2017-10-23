@@ -1,0 +1,131 @@
+<?php
+namespace App\Controller;
+
+use App\Controller\AppController;
+
+/**
+ * Objects Controller
+ *
+ * @property \App\Model\Table\ObjectsTable $Objects
+ */
+class ObjectsController extends AppController
+{
+
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+         $this->paginate = [
+			'limit' => 10,
+            'contain' => ['Types']
+        ];
+	
+		/*$query = $this->Reminds->find()->where(['id' => $id]);
+		$this->set('reminds', $this->paginate($query));*/
+		
+        $type1 = $this->Objects->find()->where(['Objects.type_id' => 1]);
+		$type2 = $this->Objects->find()->where(['Objects.type_id' => 2]);
+		$type4 = $this->Objects->find()->where(['Objects.type_id' => 4]);
+		
+		$types = $this->Objects->Types->find('all');
+		
+		$this->set(compact('types'));
+        $this->set('objects1', $this->paginate($type1));
+		$this->set('objects2', $this->paginate($type2));
+		$this->set('objects4', $this->paginate($type4));
+        $this->set('_serialize', ['objects1','objects2','objects4']);
+    }
+
+    /**
+     * View method
+     *
+     * @param string|null $id Object id.
+     * @return void
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $object = $this->Objects->get($id, [
+            'contain' => ['Types', 'Reminds' => ['Items']]
+        ]);
+		$items = $this->Objects->Reminds->Items->find('all', ['limit' => 200]);
+		
+		$type4 = $this->Objects->find('all')->where(['type_id' => 4]);
+		
+        $this->set('object', $object);
+        $this->set('_serialize', ['object']);
+		$this->set(compact('items'));
+    }
+
+    /**
+     * Add method
+     *
+     * @return void Redirects on successful add, renders view otherwise.
+     */
+    public function add()
+    {
+        $object = $this->Objects->newEntity();
+        if ($this->request->is('post')) {
+			//pr($this->request->data);
+			//exit;
+            $object = $this->Objects->patchEntity($object, $this->request->data);
+            if ($this->Objects->save($object)) {
+                $this->Flash->success(__('The object has been saved.'));
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The object could not be saved. Please, try again.'));
+            }
+        }
+        $types = $this->Objects->Types->find('list', ['limit' => 200]);
+        $this->set(compact('object', 'types'));
+        $this->set('_serialize', ['object']);
+    }
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Object id.
+     * @return void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $object = $this->Objects->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $object = $this->Objects->patchEntity($object, $this->request->data);
+            if ($this->Objects->save($object)) {
+                $this->Flash->success(__('The object has been saved.'));
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The object could not be saved. Please, try again.'));
+            }
+        }
+        $types = $this->Objects->Types->find('list', ['limit' => 200]);
+        $this->set(compact('object', 'types'));
+        $this->set('_serialize', ['object']);
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Object id.
+     * @return void Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $object = $this->Objects->get($id);
+        if ($this->Objects->delete($object)) {
+            $this->Flash->success(__('The object has been deleted.'));
+        } else {
+            $this->Flash->error(__('The object could not be deleted. Please, try again.'));
+        }
+        return $this->redirect(['action' => 'index']);
+    }
+}
