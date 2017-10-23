@@ -1,8 +1,8 @@
 		<?= $this->Html->css('https://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css'); ?>
-        <?= $this->Html->css('/webroot/bootstrap/css/bootstrap.min'); ?>
+        <?= $this->Html->css('/bootstrap/css/bootstrap.min'); ?>
         <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'); ?>
         <?= $this->Html->css('http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'); ?>
-        <?= $this->Html->css('/webroot/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min'); ?>
+        <?= $this->Html->css('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min'); ?>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,8 +17,8 @@
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
-        <?= $this->Html->script('/webroot/bootstrap/js/bootstrap.min'); ?>        
-        <?= $this->Html->script('/webroot/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min'); ?>
+        <?= $this->Html->script('/bootstrap/js/bootstrap.min'); ?>
+        <?= $this->Html->script('/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min'); ?>
 <div class="container">
 	<div class="page-content">
 		<section class="content">    
