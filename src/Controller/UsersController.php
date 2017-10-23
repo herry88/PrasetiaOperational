@@ -15,8 +15,8 @@ class UsersController extends AppController
     {
        parent::beforeFilter($event);
 	   //echo ($this->Auth->user('id'));
-	   
-	    //$this->Auth->allow(['add','edit','index']);
+
+//        $this->Auth->allow(['add','edit','index']);
 	   
 	   if ( $this->Auth->user('id') ){
 		   $this->Auth->allow(['add','edit','index']);
