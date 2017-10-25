@@ -1,0 +1,11 @@
+.button {
+	max-width: 400px;
+	margin-right: 45px;
+	padding: 25px;
+	text-align: center;
+}
+
+.buttonupload{
+	padding:  20px;
+	text-align: right;
+}

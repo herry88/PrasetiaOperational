@@ -20,6 +20,18 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        
+        <!-- include datatable bootstrap -->
+        <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css',['inline'=>'false']) ?>
+         <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',array('inline'=>'false')) ?>
+         <?= $this->Html->css('https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css',['inline'=>'false']) ?>
+         <!-- end include datatable bootstrap -->
+         
+        <!-- include mycss -->
+        <?= $this->Html->css('cssku.css') ?>
+        <!--end mycss -->
+
+
 
         <?= $this->Html->script('/plugins/jQuery/jQuery-2.1.4.min'); ?>
         <?= $this->Html->script('http://code.jquery.com/ui/1.11.2/jquery-ui.min.js'); ?>
@@ -41,6 +53,14 @@
         <?= $this->Html->script('/plugins/slimScroll/jquery.slimscroll.min'); ?>
         <?= $this->Html->script('/plugins/fastclick/fastclick.min'); ?>
         <?= $this->Html->script('/dist/js/app.min'); ?>
+
+        <!-- SCRIPT DATATABLE BOOTSTRAP -->
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+    <!-- end include datatable bootstrap -->
     </head>
     <body class="skin-red sidebar-mini">
         <div class="wrapper">

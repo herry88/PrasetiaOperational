@@ -37,6 +37,9 @@ class RemindsTable extends Table
             'foreignKey' => 'item_id',
             'joinType' => 'INNER'
         ]);
+        $this->hasMany('RemindPhotos', [
+            'foreignKey' => 'remind_id'
+        ]);
     }
 
     /**

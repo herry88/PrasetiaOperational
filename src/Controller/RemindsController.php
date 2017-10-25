@@ -1016,12 +1016,13 @@ class RemindsController extends AppController
         $remind = $this->Reminds->get($id, [
             'contain' => ['Objects', 'Items']
         ]);
-		$objects = $this->Reminds->Objects->find('all', ['limit' => 200]);
+	    $objects = $this->Reminds->Objects->find('all', ['limit' => 200]);
         $items = $this->Reminds->Items->find('all', ['limit' => 200]);
-        $this->set(compact( 'objects', 'items'));
+        $remind_photo = $this->Reminds->RemindPhotos->find()->where(['remind_id' => $id]);
+        $remind_id = $id;
+        $this->set(compact( 'objects', 'items', 'remind_photo','remind_id'));
         $this->set('remind', $remind);
-        $this->set('_serialize', ['remind']);
-		
+        $this->set('_serialize', ['remind']);	
 		//pr($items);
     }
 	
