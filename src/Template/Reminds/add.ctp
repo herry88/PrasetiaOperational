@@ -1,7 +1,5 @@
 <?= $this->Html->script('jquery.number.min'); ?>
 <?php
-    // echo $this->Html->css('/webroot/bootstrap/css/bootstrap-datetimepicker.min');
-    // echo $this->Html->script('/webroot/bootstrap/js/bootstrap.min');
     echo $this->Html->script('/plugins/input-mask/jquery.inputmask');
     echo $this->Html->script('/plugins/input-mask/jquery.inputmask.date.extensions');
     echo $this->Html->script('/plugins/input-mask/jquery.inputmask.extensions');
